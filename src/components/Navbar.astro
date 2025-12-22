@@ -1,48 +1,47 @@
-<nav class="sticky top-0 z-50 bg-zinc-950/70 backdrop-blur-lg border-b border-zinc-800">
-  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
-    
-    <!-- LOGO -->
-    <h1 class="text-xl sm:text-2xl font-bold text-indigo-400">
-      Hola, Bienvenido
-    </h1>
+<nav class="sticky top-0 z-50 flex items-center justify-between px-4 sm:px-6 py-4
+            border-b border-zinc-800 bg-zinc-950/70 backdrop-blur-lg">
 
-    <!-- MENU DESKTOP -->
-    <ul class="hidden md:flex gap-8 text-sm text-zinc-400">
-      <li><a href="/" class="hover:text-indigo-400 transition-colors">Inicio</a></li>
-      <li><a href="/projects" class="hover:text-indigo-400 transition-colors">Proyectos</a></li>
-      <li><a href="/about" class="hover:text-indigo-400 transition-colors">Sobre mí</a></li>
-    </ul>
+  <h1 class="text-xl sm:text-2xl font-bold text-indigo-400">
+    Hola, Bienvenido
+  </h1>
 
-    <!-- BOTÓN HAMBURGUESA (MÓVIL) -->
-    <button
-      id="menu-btn"
-      class="md:hidden flex flex-col gap-1.5"
-      aria-label="Abrir menú"
-    >
-      <span class="w-6 h-0.5 bg-zinc-300"></span>
-      <span class="w-6 h-0.5 bg-zinc-300"></span>
-      <span class="w-6 h-0.5 bg-zinc-300"></span>
-    </button>
-  </div>
+  <!-- Desktop menu -->
+  <ul class="hidden md:flex gap-8 text-sm text-zinc-400">
+    <li><a href="/" class="hover:text-indigo-400 transition">Inicio</a></li>
+    <li><a href="/projects" class="hover:text-indigo-400 transition">Proyectos</a></li>
+    <li><a href="/about" class="hover:text-indigo-400 transition">Sobre mí</a></li>
+  </ul>
 
-  <!-- MENU MÓVIL -->
-  <div
-    id="mobile-menu"
-    class="md:hidden hidden bg-zinc-950 border-t border-zinc-800"
+  <!-- Hamburger -->
+  <button
+    id="menu-btn"
+    class="md:hidden text-2xl text-zinc-300"
+    aria-label="Abrir menú"
   >
-    <ul class="flex flex-col px-6 py-6 gap-6 text-zinc-300 text-sm">
-      <li><a href="/" class="hover:text-indigo-400">Inicio</a></li>
-      <li><a href="/projects" class="hover:text-indigo-400">Proyectos</a></li>
-      <li><a href="/about" class="hover:text-indigo-400">Sobre mí</a></li>
-    </ul>
-  </div>
+    ☰
+  </button>
 </nav>
 
-<script>
-  const btn = document.getElementById("menu-btn");
-  const menu = document.getElementById("mobile-menu");
+<!-- Overlay -->
+<div
+  id="menu-overlay"
+  class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden"
+></div>
 
-  btn?.addEventListener("click", () => {
-    menu?.classList.toggle("hidden");
-  });
-</script>
+<!-- Drawer -->
+<aside
+  id="mobile-menu"
+  class="fixed top-0 right-0 h-full w-64 bg-zinc-950 border-l border-zinc-800
+         transform translate-x-full transition-transform duration-300 z-50"
+>
+  <div class="flex items-center justify-between px-6 py-4 border-b border-zinc-800">
+    <span class="font-bold text-indigo-400">Menú</span>
+    <button id="menu-close" class="text-xl text-zinc-400">✕</button>
+  </div>
+
+  <ul class="flex flex-col gap-6 p-6 text-zinc-300">
+    <li><a href="/" class="hover:text-indigo-400">Inicio</a></li>
+    <li><a href="/projects" class="hover:text-indigo-400">Proyectos</a></li>
+    <li><a href="/about" class="hover:text-indigo-400">Sobre mí</a></li>
+  </ul>
+</aside>
