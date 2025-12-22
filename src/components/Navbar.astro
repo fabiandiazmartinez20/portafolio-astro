@@ -1,12 +1,48 @@
-<nav class="sticky top-0 z-50 flex items-center justify-between px-4 sm:px-6 py-4 border-b border-zinc-800 bg-zinc-950/70 backdrop-blur-lg">
-  <h1 class="text-xl sm:text-2xl font-bold text-indigo-400">Hola, Bienvenido</h1>
+<nav class="sticky top-0 z-50 bg-zinc-950/70 backdrop-blur-lg border-b border-zinc-800">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
+    
+    <!-- LOGO -->
+    <h1 class="text-xl sm:text-2xl font-bold text-indigo-400">
+      Hola, Bienvenido
+    </h1>
 
-  <div class="flex items-center gap-6">
-    <ul class="hidden md:flex gap-6 sm:gap-8 text-sm text-zinc-400">
+    <!-- MENU DESKTOP -->
+    <ul class="hidden md:flex gap-8 text-sm text-zinc-400">
       <li><a href="/" class="hover:text-indigo-400 transition-colors">Inicio</a></li>
       <li><a href="/projects" class="hover:text-indigo-400 transition-colors">Proyectos</a></li>
       <li><a href="/about" class="hover:text-indigo-400 transition-colors">Sobre mí</a></li>
     </ul>
-    <!-- Aquí puedes agregar un botón hamburguesa para móvil si quieres -->
+
+    <!-- BOTÓN HAMBURGUESA (MÓVIL) -->
+    <button
+      id="menu-btn"
+      class="md:hidden flex flex-col gap-1.5"
+      aria-label="Abrir menú"
+    >
+      <span class="w-6 h-0.5 bg-zinc-300"></span>
+      <span class="w-6 h-0.5 bg-zinc-300"></span>
+      <span class="w-6 h-0.5 bg-zinc-300"></span>
+    </button>
+  </div>
+
+  <!-- MENU MÓVIL -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden bg-zinc-950 border-t border-zinc-800"
+  >
+    <ul class="flex flex-col px-6 py-6 gap-6 text-zinc-300 text-sm">
+      <li><a href="/" class="hover:text-indigo-400">Inicio</a></li>
+      <li><a href="/projects" class="hover:text-indigo-400">Proyectos</a></li>
+      <li><a href="/about" class="hover:text-indigo-400">Sobre mí</a></li>
+    </ul>
   </div>
 </nav>
+
+<script>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("mobile-menu");
+
+  btn?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+  });
+</script>
