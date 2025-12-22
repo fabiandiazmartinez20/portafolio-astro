@@ -6,120 +6,157 @@ import Navbar from "../components/Navbar.astro";
 <BaseLayout title="Fabián | Portafolio">
   <Navbar />
 
-  <main class="max-w-6xl mx-auto px-6">
+  <!-- Fondo de partículas sutil -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-indigo-900/10 to-transparent"></div>
+    <div class="particles absolute inset-0"></div>
+  </div>
 
-    <!-- HERO -->
-    <section class="min-h-[80vh] flex flex-col justify-center
-                    text-center md:text-left">
-      <span class="reveal opacity-0 translate-y-8 transition-all duration-700
-                   text-indigo-500 text-sm uppercase tracking-widest mb-4">
-        Desarrollador Web
-      </span>
+  <main class="relative max-w-6xl mx-auto px-6 z-10">
 
-      <h1 class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-100
-                 text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight mb-6">
-        Construyo <span class="text-indigo-500">experiencias web</span><br />
-        rápidas y escalables
-      </h1>
+    <!-- HERO - Typing + Particles -->
+    <section class="min-h-screen flex items-center justify-center relative">
+      <div class="text-center max-w-4xl">
+        <span class="text-indigo-400 text-sm uppercase tracking-widest mb-4 block animate-fade-in">
+          Desarrollador Web Full-Stack
+        </span>
 
-      <p class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-200
-                text-zinc-600 dark:text-zinc-400 text-base sm:text-lg
-                max-w-xl mx-auto md:mx-0">
-        Desarrollo aplicaciones modernas con Angular, NestJS, Astro y Firebase.
-        Me enfoco en rendimiento, diseño limpio y buenas prácticas.
-      </p>
+        <h1 class="text-4xl sm:text-5xl md:text-7xl font-black leading-tight mb-8">
+          <span id="typing" class="text-white">Construyo experiencias web</span><br />
+          <span class="text-indigo-400">rápidas y escalables</span>
+        </h1>
 
-      <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-300
-                  mt-10 flex flex-col sm:flex-row gap-4
-                  justify-center md:justify-start">
-        <a
-          href="/projects"
-          class="px-6 py-3 bg-indigo-500 rounded-xl text-white font-medium
-                 hover:bg-indigo-600 transition"
-        >
-          Ver proyectos
-        </a>
+        <p class="text-lg text-zinc-400 max-w-2xl mx-auto mb-10">
+          Especializado en Angular, NestJS, Astro y Firebase. <br />
+          Rendimiento extremo, código limpio y escalabilidad sin límites.
+        </p>
 
-        <a
-          href="https://github.com/tuusuario"
-          target="_blank"
-          class="px-6 py-3 border border-zinc-300 dark:border-zinc-700
-                 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition"
-        >
-          GitHub
-        </a>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/projects"
+            class="px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full text-white font-semibold
+                   hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50"
+          >
+            Explorar proyectos
+          </a>
+          <a
+            href="https://github.com/tuusuario"
+            target="_blank"
+            class="px-8 py-4 border border-indigo-500/50 rounded-full text-indigo-400 font-semibold
+                   hover:bg-indigo-500/10 hover:border-indigo-400 transition-all duration-300"
+          >
+            GitHub
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- STACK -->
-    <section class="py-20 border-t border-zinc-200 dark:border-zinc-800">
-      <h2 class="reveal opacity-0 translate-y-8 transition-all duration-700
-                 text-2xl font-bold mb-8">
-        Stack principal
+    <section class="py-24">
+      <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text">
+        Tecnologías que domino
       </h2>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
-        <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-100
-                    p-4 border border-zinc-200 dark:border-zinc-800 rounded-xl
-                    hover:scale-105 transition-transform">
-          Angular
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div class="stack-card bg-zinc-900/50 backdrop-blur-md border border-zinc-800 rounded-2xl p-6
+                    hover:scale-110 hover:border-indigo-500/50 transition-all duration-500 group">
+          <h3 class="text-xl font-semibold mb-2 text-indigo-400">Angular</h3>
+          <p class="text-zinc-500 text-sm">Frontend robusto y escalable</p>
         </div>
-        <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-200
-                    p-4 border border-zinc-200 dark:border-zinc-800 rounded-xl
-                    hover:scale-105 transition-transform">
-          NestJS
+        <div class="stack-card bg-zinc-900/50 backdrop-blur-md border border-zinc-800 rounded-2xl p-6
+                    hover:scale-110 hover:border-indigo-500/50 transition-all duration-500 group">
+          <h3 class="text-xl font-semibold mb-2 text-indigo-400">NestJS</h3>
+          <p class="text-zinc-500 text-sm">Backend limpio y eficiente</p>
         </div>
-        <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-300
-                    p-4 border border-zinc-200 dark:border-zinc-800 rounded-xl
-                    hover:scale-105 transition-transform">
-          Astro
+        <div class="stack-card bg-zinc-900/50 backdrop-blur-md border border-zinc-800 rounded-2xl p-6
+                    hover:scale-110 hover:border-indigo-500/50 transition-all duration-500 group">
+          <h3 class="text-xl font-semibold mb-2 text-indigo-400">Astro</h3>
+          <p class="text-zinc-500 text-sm">Sitios ultra-rápidos</p>
         </div>
-        <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-400
-                    p-4 border border-zinc-200 dark:border-zinc-800 rounded-xl
-                    hover:scale-105 transition-transform">
-          Firebase
+        <div class="stack-card bg-zinc-900/50 backdrop-blur-md border border-zinc-800 rounded-2xl p-6
+                    hover:scale-110 hover:border-indigo-500/50 transition-all duration-500 group">
+          <h3 class="text-xl font-semibold mb-2 text-indigo-400">Firebase</h3>
+          <p class="text-zinc-500 text-sm">Backend serverless</p>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section class="py-20 border-t border-zinc-200 dark:border-zinc-800">
-      <h2 class="reveal opacity-0 translate-y-8 transition-all duration-700
-                 text-2xl font-bold mb-8">
+    <!-- PROYECTOS -->
+    <section class="py-24">
+      <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text">
         Proyectos destacados
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-100
-                    p-6 border border-zinc-200 dark:border-zinc-800 rounded-xl
-                    hover:border-indigo-500 hover:-translate-y-1 hover:shadow-lg transition">
-          <h3 class="font-semibold text-lg mb-2">Marketplace educativo</h3>
-          <p class="text-zinc-600 dark:text-zinc-400 text-sm mb-4">
-            Plataforma para docentes con marketplace, verificación y pagos.
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="project-card bg-zinc-900/50 backdrop-blur-md border border-zinc-800 rounded-2xl p-8
+                     hover:border-indigo-500 hover:shadow-2xl hover:shadow-indigo-500/20 transition-all duration-500 group">
+          <h3 class="text-2xl font-bold mb-4 group-hover:text-indigo-400 transition-colors">Marketplace educativo</h3>
+          <p class="text-zinc-400 mb-6">
+            Plataforma completa para docentes: marketplace, verificación KYC y pagos integrados.
           </p>
-          <span class="text-xs text-indigo-500">Angular · NestJS · MySQL</span>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-zinc-800 text-xs rounded-full text-indigo-300">Angular</span>
+            <span class="px-3 py-1 bg-zinc-800 text-xs rounded-full text-indigo-300">NestJS</span>
+            <span class="px-3 py-1 bg-zinc-800 text-xs rounded-full text-indigo-300">MySQL</span>
+          </div>
         </div>
 
-        <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-200
-                    p-6 border border-zinc-200 dark:border-zinc-800 rounded-xl
-                    hover:border-indigo-500 hover:-translate-y-1 hover:shadow-lg transition">
-          <h3 class="font-semibold text-lg mb-2">App de asistencia QR</h3>
-          <p class="text-zinc-600 dark:text-zinc-400 text-sm mb-4">
-            Registro de asistencia con QR y Google Sheets.
+        <div class="project-card bg-zinc-900/50 backdrop-blur-md border border-zinc-800 rounded-2xl p-8
+                     hover:border-indigo-500 hover:shadow-2xl hover:shadow-indigo-500/20 transition-all duration-500 group">
+          <h3 class="text-2xl font-bold mb-4 group-hover:text-indigo-400 transition-colors">App de asistencia QR</h3>
+          <p class="text-zinc-400 mb-6">
+            Sistema de registro de asistencia vía QR con integración a Google Sheets y notificaciones.
           </p>
-          <span class="text-xs text-indigo-500">Android · Firebase</span>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-zinc-800 text-xs rounded-full text-indigo-300">Android</span>
+            <span class="px-3 py-1 bg-zinc-800 text-xs rounded-full text-indigo-300">Firebase</span>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Scroll reveal -->
+  <!-- Estilos adicionales -->
+  <style>
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .animate-fade-in { animation: fadeIn 1s ease-out; }
+
+    /* Partículas */
+    .particles {
+      background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%);
+      animation: particles 20s linear infinite;
+    }
+    @keyframes particles {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-100vh); }
+    }
+
+    /* Typing effect */
+    #typing {
+      overflow: hidden;
+      border-right: 0.15em solid indigo;
+      white-space: nowrap;
+      margin: 0 auto;
+      animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: indigo; }
+    }
+  </style>
+
+  <!-- Script para typing y reveal -->
   <script>
+    // Reveal observer (mantengo el tuyo)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.remove("opacity-0", "translate-y-8");
+            entry.target.classList.add('opacity-100', 'translate-y-0');
             observer.unobserve(entry.target);
           }
         });
@@ -127,6 +164,9 @@ import Navbar from "../components/Navbar.astro";
       { threshold: 0.15 }
     );
 
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-700');
+      observer.observe(el);
+    });
   </script>
 </BaseLayout>
