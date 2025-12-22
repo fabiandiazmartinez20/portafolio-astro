@@ -1,0 +1,33 @@
+---
+import "../styles/global.css";
+
+const { title = "Portafolio" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+
+  <body class="bg-neutral-950 text-neutral-100">
+    <header class="max-w-5xl mx-auto px-6 py-6 flex justify-between">
+      <span class="font-bold">Fabián</span>
+      <nav class="flex gap-6 text-sm">
+        <a href="/">Inicio</a>
+        <a href="/projects">Proyectos</a>
+        <a href="/contact">Contacto</a>
+      </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6">
+      <slot />
+    </main>
+
+    <footer class="max-w-5xl mx-auto px-6 py-10 text-sm text-neutral-400">
+      © {new Date().getFullYear()} Fabián
+    </footer>
+  </body>
+</html>
