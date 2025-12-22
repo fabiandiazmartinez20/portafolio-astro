@@ -1,15 +1,29 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
 ---
 
 <BaseLayout title="Fabián | Portafolio">
-  <section class="py-20">
-    <h1 class="text-4xl font-bold mb-4">
-      Hola, soy Fabián 👋
-    </h1>
+  <Navbar />
 
-    <p class="text-neutral-300 max-w-xl">
-      Desarrollador Full Stack con experiencia en Angular, NestJS y Firebase.
+  <main class="max-w-5xl mx-auto px-6 py-24">
+    <h2 class="text-4xl md:text-6xl font-bold mb-6">
+      Hola, soy <span class="text-indigo-400">Fabián</span>
+    </h2>
+
+    <p class="text-zinc-400 text-lg max-w-xl">
+      Desarrollador web enfocado en frontend y backend.  
+      Trabajo con Angular, NestJS, Astro y Firebase.
     </p>
-  </section>
+
+    <div class="mt-10 flex gap-4">
+      <a href="/projects" class="px-6 py-3 bg-indigo-500 rounded-lg text-white font-medium hover:bg-indigo-600">
+        Ver proyectos
+      </a>
+      <a href="https://github.com/tuusuario" target="_blank"
+         class="px-6 py-3 border border-zinc-700 rounded-lg hover:bg-zinc-800">
+        GitHub
+      </a>
+    </div>
+  </main>
 </BaseLayout>
