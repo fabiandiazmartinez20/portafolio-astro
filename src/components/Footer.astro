@@ -29,24 +29,84 @@
     </div>
   </div>
 
-  <!-- Línea horizontal con marcas y círculo central (ahora abajo con menos espacio) -->
-  <div class="relative mt-8 w-full max-w-5xl mx-auto">
+  <!-- Línea horizontal con marcas y círculo central con sol arrastrable -->
+  <div id="sun-track" class="relative mt-8 w-full max-w-5xl mx-auto cursor-pointer">
     <div class="relative h-px bg-zinc-800">
       <!-- Línea con marcas (dashes) -->
-      <div class="absolute inset-0 flex justify-between items-center px-4">
+      <div class="absolute inset-0 flex justify-between items-center px-4 pointer-events-none">
         <span class="w-px h-3 bg-zinc-600"></span>
         <span class="w-px h-3 bg-zinc-600"></span>
         <span class="w-px h-3 bg-zinc-600"></span>
         <span class="w-px h-3 bg-zinc-600"></span>
-        <!-- Círculo central con sol -->
-        <div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-zinc-900 border-2 border-emerald-400 flex items-center justify-center">
-          <span class="text-emerald-400 text-xl">☀️</span>
-        </div>
         <span class="w-px h-3 bg-zinc-600"></span>
         <span class="w-px h-3 bg-zinc-600"></span>
         <span class="w-px h-3 bg-zinc-600"></span>
         <span class="w-px h-3 bg-zinc-600"></span>
       </div>
+      
+      <!-- Círculo central con sol arrastrable -->
+      <div 
+        id="sun-icon"
+        class="absolute transform -translate-y-1/2 w-12 h-12 rounded-full bg-zinc-900 border-2 border-emerald-400 flex items-center justify-center cursor-grab active:cursor-grabbing hover:scale-110"
+        style="left: 10%;"
+      >
+        <span class="text-2xl select-none">🌅</span>
+      </div>
     </div>
   </div>
 </footer>
+
+<script is:inline>
+  (function() {
+    let isDragging = false;
+
+    window.addEventListener('load', function() {
+      const sunIcon = document.getElementById('sun-icon');
+      const sunTrack = document.getElementById('sun-track');
+
+      if (!sunIcon || !sunTrack) return;
+
+      function updateSun(x) {
+        const rect = sunTrack.getBoundingClientRect();
+        let pos = (x - rect.left) / rect.width;
+        pos = Math.max(0.05, Math.min(0.95, pos));
+        
+        sunIcon.style.left = (pos * 100) + '%';
+        
+        const icon = sunIcon.querySelector('span');
+        
+        if (pos < 0.33) {
+          icon.textContent = '🌅';
+          sunIcon.style.borderColor = '#fbbf24';
+          document.body.style.backgroundColor = 'rgb(15, 23, 42)';
+        } else if (pos < 0.66) {
+          icon.textContent = '☀️';
+          sunIcon.style.borderColor = '#fbbf24';
+          document.body.style.backgroundColor = 'rgb(25, 33, 50)';
+        } else {
+          icon.textContent = '🌙';
+          sunIcon.style.borderColor = '#34d399';
+          document.body.style.backgroundColor = 'rgb(10, 10, 15)';
+        }
+      }
+
+      sunIcon.addEventListener('mousedown', function() {
+        isDragging = true;
+      });
+
+      document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+          updateSun(e.clientX);
+        }
+      });
+
+      document.addEventListener('mouseup', function() {
+        isDragging = false;
+      });
+
+      sunTrack.addEventListener('click', function(e) {
+        updateSun(e.clientX);
+      });
+    });
+  })();
+</script>
