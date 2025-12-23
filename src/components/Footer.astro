@@ -1,7 +1,7 @@
 ---
 ---
 
-<footer class="relative py-1 bg-transparent text-zinc-400 text-sm">
+<footer class="relative py-0 bg-transparent text-zinc-400 text-sm">
   <!-- Contenido del footer -->
   <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 text-center md:text-left">
     <!-- Izquierda: Copyright -->
@@ -14,7 +14,7 @@
       <div>
         <p class="font-medium text-zinc-200">Otros</p>
         <ul class="mt-2 space-y-1">
-          <li><a href="https://github.com/tuusuario" target="_blank" class="hover:text-emerald-400 transition">Github</a></li>
+          <li><a href="https://github.com/fabiandiazmartinez20" target="_blank" class="hover:text-emerald-400 transition">Github</a></li>
           <li><a href="/cv" class="hover:text-emerald-400 transition">CV</a></li>
           <li><a href="https://linkedin.com/in/tuusuario" target="_blank" class="hover:text-emerald-400 transition">LinkedIn</a></li>
         </ul>
@@ -47,10 +47,25 @@
       <!-- Círculo central con sol arrastrable -->
       <div 
         id="sun-icon"
-        class="absolute transform -translate-y-1/2 w-12 h-12 rounded-full bg-zinc-900 border-2 border-emerald-400 flex items-center justify-center cursor-grab active:cursor-grabbing hover:scale-110"
+        class="absolute transform -translate-y-1/2 w-12 h-12 rounded-full bg-zinc-900 border-2 border-emerald-400 flex items-center justify-center cursor-grab active:cursor-grabbing hover:scale-110 transition-all"
         style="left: 10%;"
       >
-        <span class="text-2xl select-none">🌅</span>
+        <!-- SVG del icono (cambia dinámicamente) -->
+        <div id="icon-svg" class="w-6 h-6">
+          <!-- Sunrise SVG (inicial) -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400">
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+            <path d="M22 17H2"></path>
+            <path d="M12 9a3 3 0 0 1 3 3"></path>
+          </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -60,37 +75,69 @@
   (function() {
     let isDragging = false;
 
-    window.addEventListener('load', function() {
-      const sunIcon = document.getElementById('sun-icon');
-      const sunTrack = document.getElementById('sun-track');
+    // SVGs para cada estado
+    const sunriseIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400">
+      <path d="M12 2v2"></path>
+      <path d="M12 20v2"></path>
+      <path d="m4.93 4.93 1.41 1.41"></path>
+      <path d="m17.66 17.66 1.41 1.41"></path>
+      <path d="M2 12h2"></path>
+      <path d="M20 12h2"></path>
+      <path d="m6.34 17.66-1.41 1.41"></path>
+      <path d="m19.07 4.93-1.41 1.41"></path>
+      <path d="M22 17H2"></path>
+      <path d="M12 9a3 3 0 0 1 3 3"></path>
+    </svg>`;
 
-      if (!sunIcon || !sunTrack) return;
+    const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2"></path>
+      <path d="M12 20v2"></path>
+      <path d="m4.93 4.93 1.41 1.41"></path>
+      <path d="m17.66 17.66 1.41 1.41"></path>
+      <path d="M2 12h2"></path>
+      <path d="M20 12h2"></path>
+      <path d="m6.34 17.66-1.41 1.41"></path>
+      <path d="m19.07 4.93-1.41 1.41"></path>
+    </svg>`;
+
+    const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400">
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+    </svg>`;
+
+    window.addEventListener('load', function() {
+      const sunIconEl = document.getElementById('sun-icon');
+      const sunTrack = document.getElementById('sun-track');
+      const iconSvg = document.getElementById('icon-svg');
+
+      if (!sunIconEl || !sunTrack || !iconSvg) return;
 
       function updateSun(x) {
         const rect = sunTrack.getBoundingClientRect();
         let pos = (x - rect.left) / rect.width;
         pos = Math.max(0.05, Math.min(0.95, pos));
         
-        sunIcon.style.left = (pos * 100) + '%';
-        
-        const icon = sunIcon.querySelector('span');
+        sunIconEl.style.left = (pos * 100) + '%';
         
         if (pos < 0.33) {
-          icon.textContent = '🌅';
-          sunIcon.style.borderColor = '#fbbf24';
+          // Amanecer
+          iconSvg.innerHTML = sunriseIcon;
+          sunIconEl.style.borderColor = '#fbbf24';
           document.body.style.backgroundColor = 'rgb(15, 23, 42)';
         } else if (pos < 0.66) {
-          icon.textContent = '☀️';
-          sunIcon.style.borderColor = '#fbbf24';
+          // Día
+          iconSvg.innerHTML = sunIcon;
+          sunIconEl.style.borderColor = '#fbbf24';
           document.body.style.backgroundColor = 'rgb(25, 33, 50)';
         } else {
-          icon.textContent = '🌙';
-          sunIcon.style.borderColor = '#34d399';
+          // Noche
+          iconSvg.innerHTML = moonIcon;
+          sunIconEl.style.borderColor = '#34d399';
           document.body.style.backgroundColor = 'rgb(10, 10, 15)';
         }
       }
 
-      sunIcon.addEventListener('mousedown', function() {
+      sunIconEl.addEventListener('mousedown', function() {
         isDragging = true;
       });
 
