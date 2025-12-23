@@ -1,47 +1,13 @@
-<nav class="sticky top-0 z-50 flex items-center justify-between px-4 sm:px-6 py-4
-            border-b border-zinc-800 bg-zinc-950/70 backdrop-blur-lg">
-
-  <h1 class="text-xl sm:text-2xl font-bold text-indigo-400">
-    Hola, Bienvenido
-  </h1>
-
-  <!-- Desktop menu -->
-  <ul class="hidden md:flex gap-8 text-sm text-zinc-400">
-    <li><a href="/" class="hover:text-indigo-400 transition">Inicio</a></li>
-    <li><a href="/projects" class="hover:text-indigo-400 transition">Proyectos</a></li>
-    <li><a href="/about" class="hover:text-indigo-400 transition">Sobre mí</a></li>
-  </ul>
-
-  <!-- Hamburger -->
-  <button
-    id="menu-btn"
-    class="md:hidden text-2xl text-zinc-300"
-    aria-label="Abrir menú"
-  >
-    ☰
-  </button>
-</nav>
-
-<!-- Overlay -->
-<div
-  id="menu-overlay"
-  class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden"
-></div>
-
-<!-- Drawer -->
-<aside
-  id="mobile-menu"
-  class="fixed top-0 right-0 h-full w-64 bg-zinc-950 border-l border-zinc-800
-         transform translate-x-full transition-transform duration-300 z-50"
+<nav
+  id="navbar"
+  class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 
+         px-4 sm:px-8 py-5
+         bg-zinc-950/80 backdrop-blur-lg rounded-full border border-zinc-800 shadow-lg 
+         transition-all duration-300"
 >
-  <div class="flex items-center justify-between px-6 py-4 border-b border-zinc-800">
-    <span class="font-bold text-indigo-400">Menú</span>
-    <button id="menu-close" class="text-xl text-zinc-400">✕</button>
-  </div>
-
-  <ul class="flex flex-col gap-6 p-6 text-zinc-300">
-    <li><a href="/" class="hover:text-indigo-400">Inicio</a></li>
-    <li><a href="/projects" class="hover:text-indigo-400">Proyectos</a></li>
-    <li><a href="/about" class="hover:text-indigo-400">Sobre mí</a></li>
+  <ul class="flex gap-4 sm:gap-8 text-sm font-medium text-zinc-300">
+    <li><a href="/" class="hover:text-emerald-400 transition">Inicio</a></li>
+    <li><a href="/projects" class="hover:text-emerald-400 transition">Proyectos</a></li>
+    <li><a href="/about" class="hover:text-emerald-400 transition">Sobre mí</a></li>
   </ul>
-</aside>
+</nav>
