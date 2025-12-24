@@ -1,7 +1,7 @@
 ---
 ---
 
-<footer class="relative py-0 bg-transparent text-zinc-400 text-sm">
+<footer class="relative py-1 bg-transparent text-zinc-400 text-sm">
   <!-- Contenido del footer -->
   <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 text-center md:text-left">
     <!-- Izquierda: Copyright -->
@@ -10,10 +10,10 @@
     </div>
 
     <!-- Derecha: Enlaces -->
-    <div class="flex flex-col md:flex-row md:justify-end gap-5 md:gap-20">
+    <div class="flex flex-col md:flex-row md:justify-end gap-6 md:gap-12">
       <div>
         <p class="font-medium text-zinc-200">Otros</p>
-        <ul class="mt- space-y-1">
+        <ul class="mt-2 space-y-1">
           <li><a href="https://github.com/fabiandiazmartinez20" target="_blank" class="hover:text-emerald-400 transition">Github</a></li>
           <li><a href="/cv" class="hover:text-emerald-400 transition">CV</a></li>
           <li><a href="https://linkedin.com/in/tuusuario" target="_blank" class="hover:text-emerald-400 transition">LinkedIn</a></li>
@@ -30,7 +30,7 @@
   </div>
 
   <!-- Línea horizontal con marcas y círculo central con sol arrastrable -->
-  <div id="sun-track" class="relative mt-1 w-full max-w-5xl mx-auto cursor-pointer">
+  <div id="sun-track" class="relative mt-8 w-full max-w-5xl mx-auto cursor-pointer">
     <div class="relative h-px bg-zinc-800">
       <!-- Línea con marcas (dashes) -->
       <div class="absolute inset-0 flex justify-between items-center px-4 pointer-events-none">
@@ -109,33 +109,44 @@
       const sunIconEl = document.getElementById('sun-icon');
       const sunTrack = document.getElementById('sun-track');
       const iconSvg = document.getElementById('icon-svg');
+      const bgGradient = document.getElementById('background-gradient');
 
-      if (!sunIconEl || !sunTrack || !iconSvg) return;
-
-      function updateSun(x) {
-        const rect = sunTrack.getBoundingClientRect();
-        let pos = (x - rect.left) / rect.width;
-        pos = Math.max(0.05, Math.min(0.95, pos));
-        
-        sunIconEl.style.left = (pos * 100) + '%';
-        
-        if (pos < 0.33) {
-          // Amanecer
-          iconSvg.innerHTML = sunriseIcon;
-          sunIconEl.style.borderColor = '#fbbf24';
-          document.body.style.backgroundColor = 'rgb(15, 23, 42)';
-        } else if (pos < 0.66) {
-          // Día
-          iconSvg.innerHTML = sunIcon;
-          sunIconEl.style.borderColor = '#fbbf24';
-          document.body.style.backgroundColor = 'rgb(25, 33, 50)';
-        } else {
-          // Noche
-          iconSvg.innerHTML = moonIcon;
-          sunIconEl.style.borderColor = '#34d399';
-          document.body.style.backgroundColor = 'rgb(10, 10, 15)';
-        }
+      if (!sunIconEl || !sunTrack || !iconSvg || !bgGradient) {
+        console.error('Elementos no encontrados');
+        return;
       }
+
+    function updateSun(x) {
+  const rect = sunTrack.getBoundingClientRect();
+  let pos = (x - rect.left) / rect.width;
+  pos = Math.max(0.05, Math.min(0.95, pos));
+  
+  sunIconEl.style.left = (pos * 100) + '%';
+  
+  const gradientDiv = bgGradient.querySelector('div:first-child');
+  
+  if (!gradientDiv) {
+    console.error('GradientDiv no encontrado');
+    return;
+  }
+  
+  if (pos < 0.33) {
+    // Amanecer (izquierda) - Verde/Teal
+    iconSvg.innerHTML = sunriseIcon;
+    sunIconEl.style.borderColor = '#fbbf24';
+    gradientDiv.className = 'absolute inset-0 bg-gradient-to-br from-[#3d5a3d] via-[#4a5f4a] to-[#2d4a3d]';
+  } else if (pos < 0.66) {
+    // Día (centro) - Color crema/beige claro (casi blanco pero no tanto)
+    iconSvg.innerHTML = sunIcon;
+    sunIconEl.style.borderColor = '#fbbf24';
+    gradientDiv.className = 'absolute inset-0 bg-gradient-to-br from-[#f5f5f0] via-[#ebebdf] to-[#e8e8dc]';
+  } else {
+    // Noche (derecha) - Verde/Teal oscuro
+    iconSvg.innerHTML = moonIcon;
+    sunIconEl.style.borderColor = '#34d399';
+    gradientDiv.className = 'absolute inset-0 bg-gradient-to-br from-[#3d5a3d] via-[#4a5f4a] to-[#2d4a3d]';
+  }
+}
 
       sunIconEl.addEventListener('mousedown', function() {
         isDragging = true;
