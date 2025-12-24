@@ -115,8 +115,7 @@
         console.error('Elementos no encontrados');
         return;
       }
-
-    function updateSun(x) {
+function updateSun(x) {
   const rect = sunTrack.getBoundingClientRect();
   let pos = (x - rect.left) / rect.width;
   pos = Math.max(0.05, Math.min(0.95, pos));
@@ -125,26 +124,71 @@
   
   const gradientDiv = bgGradient.querySelector('div:first-child');
   
+  // Seleccionar TODOS los elementos de texto
+  const titles = document.querySelectorAll('h1, h2, h3');
+  const paragraphs = document.querySelectorAll('p');
+  const spans = document.querySelectorAll('span');
+  const links = document.querySelectorAll('a');
+  
   if (!gradientDiv) {
     console.error('GradientDiv no encontrado');
     return;
   }
   
   if (pos < 0.33) {
-    // Amanecer (izquierda) - Verde/Teal
+    // Amanecer (izquierda) - Verde/Teal con texto claro
     iconSvg.innerHTML = sunriseIcon;
     sunIconEl.style.borderColor = '#fbbf24';
     gradientDiv.className = 'absolute inset-0 bg-gradient-to-br from-[#3d5a3d] via-[#4a5f4a] to-[#2d4a3d]';
+    
+    // Restaurar colores originales claros
+    titles.forEach(el => el.style.color = '');
+    paragraphs.forEach(el => el.style.color = '');
+    spans.forEach(el => el.style.color = '');
+    links.forEach(el => el.style.color = '');
+    
   } else if (pos < 0.66) {
-    // Día (centro) - Color crema/beige claro (casi blanco pero no tanto)
+    // Día (centro) - Turquesa/Cyan claro con texto OSCURO
     iconSvg.innerHTML = sunIcon;
     sunIconEl.style.borderColor = '#fbbf24';
-    gradientDiv.className = 'absolute inset-0 bg-gradient-to-br from-[#f5f5f0] via-[#ebebdf] to-[#e8e8dc]';
+    gradientDiv.className = 'absolute inset-0 bg-gradient-to-br from-[#cffafe] via-[#a5f3fc] to-[#67e8f9]';
+    
+    // Cambiar TODO a colores oscuros
+    titles.forEach(el => {
+      el.style.color = '#115e59'; // Verde oscuro
+    });
+    
+    paragraphs.forEach(el => {
+      el.style.color = '#1f2937'; // Gris oscuro
+    });
+    
+    spans.forEach(el => {
+      // Cambiar spans de texto (barras de habilidades, badges, etc)
+      if (el.classList.contains('text-zinc-100') || 
+          el.classList.contains('text-zinc-200') || 
+          el.classList.contains('text-zinc-300') ||
+          el.classList.contains('text-zinc-400') ||
+          el.classList.contains('text-sm')) {
+        el.style.color = '#1f2937';
+      }
+    });
+    
+    links.forEach(el => {
+      // Enlaces del footer y navbar
+      el.style.color = '#87857d'; // Verde grisáceo oscuro
+    });
+    
   } else {
-    // Noche (derecha) - Verde/Teal oscuro
+    // Noche (derecha) - Verde/Teal oscuro con texto claro
     iconSvg.innerHTML = moonIcon;
     sunIconEl.style.borderColor = '#34d399';
     gradientDiv.className = 'absolute inset-0 bg-gradient-to-br from-[#3d5a3d] via-[#4a5f4a] to-[#2d4a3d]';
+    
+    // Restaurar colores originales claros
+    titles.forEach(el => el.style.color = '');
+    paragraphs.forEach(el => el.style.color = '');
+    spans.forEach(el => el.style.color = '');
+    links.forEach(el => el.style.color = '');
   }
 }
 
