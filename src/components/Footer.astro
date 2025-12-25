@@ -129,6 +129,7 @@ function updateSun(x) {
   const paragraphs = document.querySelectorAll('p');
   const spans = document.querySelectorAll('span');
   const links = document.querySelectorAll('a');
+  const navbar = document.getElementById('navbar');
   
   if (!gradientDiv) {
     console.error('GradientDiv no encontrado');
@@ -140,6 +141,12 @@ function updateSun(x) {
     iconSvg.innerHTML = sunriseIcon;
     sunIconEl.style.borderColor = '#fbbf24';
     gradientDiv.className = 'absolute inset-0 bg-gradient-to-br from-[#3d5a3d] via-[#4a5f4a] to-[#2d4a3d]';
+    
+    // Navbar con texto claro
+    if (navbar) {
+      navbar.style.backgroundColor = 'rgba(24, 24, 27, 0.3)';
+      navbar.style.borderColor = 'rgba(63, 63, 70, 0.5)';
+    }
     
     // Restaurar colores originales claros
     titles.forEach(el => el.style.color = '');
@@ -153,6 +160,18 @@ function updateSun(x) {
     sunIconEl.style.borderColor = '#fbbf24';
     gradientDiv.className = 'absolute inset-0 bg-gradient-to-br from-[#cffafe] via-[#a5f3fc] to-[#67e8f9]';
     
+    // Navbar con fondo más oscuro y borde oscuro
+    if (navbar) {
+      navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+      navbar.style.borderColor = 'rgba(20, 83, 45, 0.3)';
+      
+      // Cambiar color de texto del navbar
+      const navLinks = navbar.querySelectorAll('a');
+      navLinks.forEach(link => {
+        link.style.color = '#115e59';
+      });
+    }
+    
     // Cambiar TODO a colores oscuros
     titles.forEach(el => {
       el.style.color = '#115e59'; // Verde oscuro
@@ -163,19 +182,22 @@ function updateSun(x) {
     });
     
     spans.forEach(el => {
-      // Cambiar spans de texto (barras de habilidades, badges, etc)
+      // Cambiar spans de texto (barras de habilidades, badges, footer, etc)
       if (el.classList.contains('text-zinc-100') || 
           el.classList.contains('text-zinc-200') || 
           el.classList.contains('text-zinc-300') ||
           el.classList.contains('text-zinc-400') ||
-          el.classList.contains('text-sm')) {
+          el.classList.contains('text-sm') ||
+          el.classList.contains('font-medium')) {
         el.style.color = '#1f2937';
       }
     });
     
     links.forEach(el => {
-      // Enlaces del footer y navbar
-      el.style.color = '#87857d'; // Verde grisáceo oscuro
+      // Enlaces del footer (no del navbar)
+      if (!navbar || !navbar.contains(el)) {
+        el.style.color = '#115e59';
+      }
     });
     
   } else {
@@ -184,6 +206,12 @@ function updateSun(x) {
     sunIconEl.style.borderColor = '#34d399';
     gradientDiv.className = 'absolute inset-0 bg-gradient-to-br from-[#3d5a3d] via-[#4a5f4a] to-[#2d4a3d]';
     
+    // Navbar con texto claro
+    if (navbar) {
+      navbar.style.backgroundColor = 'rgba(24, 24, 27, 0.3)';
+      navbar.style.borderColor = 'rgba(63, 63, 70, 0.5)';
+    }
+    
     // Restaurar colores originales claros
     titles.forEach(el => el.style.color = '');
     paragraphs.forEach(el => el.style.color = '');
@@ -191,7 +219,6 @@ function updateSun(x) {
     links.forEach(el => el.style.color = '');
   }
 }
-
       sunIconEl.addEventListener('mousedown', function() {
         isDragging = true;
       });
