@@ -1,0 +1,242 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+// Datos de proyectos (puedes moverlos a un archivo JSON después)
+const projects = [
+  {
+    title: "Marketplace Educativo",
+    description: "Plataforma completa para docentes con sistema de marketplace, verificación de usuarios y pasarela de pagos integrada.",
+    image: "/images/marketplace.png",
+    tags: ["Angular", "NestJS", "MySQL", "Stripe"],
+    github: "https://github.com/tuusuario/proyecto1",
+    demo: "https://demo.com",
+    featured: true
+  },
+  {
+    title: "App de Asistencia QR",
+    description: "Aplicación móvil para registro de asistencia mediante códigos QR con sincronización en tiempo real con Google Sheets.",
+    image: "/images/qr-app.png",
+    tags: ["Android", "Firebase", "Google Sheets API"],
+    github: "https://github.com/tuusuario/proyecto2",
+    featured: true
+  },
+  {
+    title: "Dashboard Analytics",
+    description: "Panel de control con visualización de datos en tiempo real y reportes automatizados.",
+    image: "/images/dashboard.png",
+    tags: ["React", "Node.js", "MongoDB", "Chart.js"],
+    github: "https://github.com/tuusuario/proyecto3",
+    demo: "https://demo.com"
+  },
+  // Agrega más proyectos aquí
+];
+---
+
+<BaseLayout title="Proyectos - Fabián">
+  <Navbar />
+
+  <!-- Fondo -->
+  <div id="background-gradient" class="fixed inset-0 pointer-events-none z-0 overflow-hidden transition-all duration-500">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#3d5a3d] via-[#4a5f4a] to-[#2d4a3d]"></div>
+    <div class="particles absolute inset-0"></div>
+  </div>
+
+  <!-- Estrellas flotantes -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-10">
+    <div class="star absolute top-10 left-10 w-8 h-8 bg-white rounded-full animate-pulse-slow opacity-80"></div>
+    <div class="star absolute top-40 right-20 w-8 h-8 bg-white rounded-full animate-pulse-slow delay-1000 opacity-80"></div>
+    <div class="star absolute bottom-20 left-40 w-6 h-6 bg-white rounded-full animate-pulse-slow delay-2000 opacity-80"></div>
+    <div class="star absolute top-1/3 right-1/3 w-6 h-6 bg-white rounded-full animate-pulse-slow delay-3000 opacity-80"></div>
+  </div>
+
+  <main class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 py-20">
+    
+    <!-- Header -->
+    <section class="text-center py-12 md:py-20">
+      <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-[#7dd3c0] mb-6">
+        Mis Proyectos
+      </h1>
+      <p class="text-xl text-zinc-300 max-w-2xl mx-auto">
+        Una selección de trabajos que demuestran mis habilidades en desarrollo web full-stack
+      </p>
+    </section>
+
+    <!-- Proyectos Destacados -->
+    <section class="mb-20">
+      <h2 class="text-3xl font-bold text-[#7dd3c0] mb-8">⭐ Proyectos destacados</h2>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {projects.filter(p => p.featured).map(project => (
+          <div class="group bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/50 rounded-2xl overflow-hidden hover:border-emerald-500 transition-all duration-300">
+            <!-- Imagen -->
+            <div class="relative h-64 overflow-hidden bg-gradient-to-br from-emerald-500/20 to-teal-500/20">
+              <img 
+                src={project.image} 
+                alt={project.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <!-- Overlay con botones al hacer hover -->
+              <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                {project.demo && (
+                  <a 
+                    href={project.demo} 
+                    target="_blank"
+                    class="px-6 py-2 bg-emerald-500 text-white rounded-full hover:bg-emerald-600 transition"
+                  >
+                    Ver Demo
+                  </a>
+                )}
+                {project.github && (
+                  <a 
+                    href={project.github} 
+                    target="_blank"
+                    class="px-6 py-2 bg-zinc-800 text-white rounded-full hover:bg-zinc-700 transition"
+                  >
+                    GitHub
+                  </a>
+                )}
+              </div>
+            </div>
+            
+            <!-- Contenido -->
+            <div class="p-6">
+              <h3 class="text-2xl font-bold text-zinc-200 mb-3 group-hover:text-emerald-400 transition-colors">
+                {project.title}
+              </h3>
+              <p class="text-zinc-400 mb-4">
+                {project.description}
+              </p>
+              
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2">
+                {project.tags.map(tag => (
+                  <span class="px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Todos los Proyectos -->
+    <section>
+      <h2 class="text-3xl font-bold text-[#7dd3c0] mb-8">📁 Todos los proyectos</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.filter(p => !p.featured).map(project => (
+          <div class="group bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/50 rounded-xl overflow-hidden hover:border-emerald-500 hover:scale-105 transition-all duration-300">
+            <!-- Imagen -->
+            <div class="relative h-48 overflow-hidden bg-gradient-to-br from-teal-500/20 to-emerald-500/20">
+              <img 
+                src={project.image} 
+                alt={project.title}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            
+            <!-- Contenido -->
+            <div class="p-5">
+              <h3 class="text-xl font-bold text-zinc-200 mb-2 group-hover:text-emerald-400 transition-colors">
+                {project.title}
+              </h3>
+              <p class="text-zinc-400 text-sm mb-4 line-clamp-2">
+                {project.description}
+              </p>
+              
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.tags.slice(0, 3).map(tag => (
+                  <span class="px-2 py-1 bg-zinc-800/50 text-zinc-300 text-xs rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <!-- Links -->
+              <div class="flex gap-3">
+                {project.demo && (
+                  <a 
+                    href={project.demo} 
+                    target="_blank"
+                    class="flex-1 text-center px-3 py-2 bg-emerald-500/20 text-emerald-400 text-sm rounded-lg hover:bg-emerald-500/30 transition"
+                  >
+                    Demo
+                  </a>
+                )}
+                {project.github && (
+                  <a 
+                    href={project.github} 
+                    target="_blank"
+                    class="flex-1 text-center px-3 py-2 bg-zinc-800/50 text-zinc-300 text-sm rounded-lg hover:bg-zinc-700/50 transition"
+                  >
+                    Code
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-20 text-center">
+      <div class="bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/50 rounded-2xl p-12 max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-[#7dd3c0] mb-4">
+          ¿Tienes un proyecto en mente?
+        </h2>
+        <p class="text-zinc-300 mb-8">
+          Estoy disponible para trabajar en nuevos proyectos. ¡Hablemos!
+        </p>
+        <a 
+          href="mailto:fabianquinnz16@gmail.com"
+          class="inline-block px-8 py-3 bg-emerald-500 text-white font-medium rounded-full hover:bg-emerald-600 hover:scale-105 transition-all"
+        >
+          Contáctame
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .particles {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="10" cy="10" r="1" fill="white" opacity="0.2"/></svg>') repeat;
+      animation: particles 60s linear infinite;
+      opacity: 0.15;
+    }
+    @keyframes particles {
+      0% { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(-100vh) translateX(-50vw); }
+    }
+
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    .animate-pulse-slow { animation: pulse-slow 3s ease-in-out infinite; }
+    .delay-1000 { animation-delay: 1s; }
+    .delay-2000 { animation-delay: 2s; }
+    .delay-3000 { animation-delay: 3s; }
+
+    /* Line clamp para limitar texto */
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
+  
+</BaseLayout>
